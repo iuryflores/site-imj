@@ -16,3 +16,48 @@
 .project[data-category="sistemas"] .project-cover{background:linear-gradient(145deg,#102d58,#071e45)}
 .project[data-category="sistemas"] .project-mark{color:#dce8ff}
 .project[data-category="sistemas"] .project-cover-type{color:#a9c5ef}
+
+/* Native transitions preserve normal links, history and opening in a new tab. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root) { animation: page-out 180ms ease-in both; }
+  ::view-transition-new(root) { animation: page-in 340ms cubic-bezier(.22,1,.36,1) both; }
+  .hero-copy > *, .page-hero .container > * {
+    animation: entrance 620ms cubic-bezier(.22,1,.36,1) both;
+  }
+  .hero-copy > :nth-child(2), .page-hero .container > :nth-child(2) { animation-delay: 65ms; }
+  .hero-copy > :nth-child(3), .page-hero .container > :nth-child(3) { animation-delay: 130ms; }
+  .hero-copy > :nth-child(4), .page-hero .container > :nth-child(4) { animation-delay: 195ms; }
+  .hero-copy > :nth-child(5) { animation-delay: 240ms; }
+  .visual { animation: entrance 850ms 120ms cubic-bezier(.22,1,.36,1) backwards; }
+  dialog[open] { animation: entrance 260ms cubic-bezier(.22,1,.36,1) both; }
+  dialog[open]::backdrop { animation: fade-in 220ms ease-out both; }
+  .nav.is-open { animation: entrance 220ms ease-out both; }
+  .project, .client-card, .value { transition: transform 250ms ease, box-shadow 250ms ease; }
+  .arrow { transition: transform 200ms ease; }
+  .button:hover .arrow, .text-link:hover .arrow { transform: translate(2px,-2px); }
+  @media (hover: hover) {
+    .project:hover, .client-card:hover, .value:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px #1025440d;
+    }
+  }
+}
+@keyframes entrance {
+  from { opacity: 0; translate: 0 18px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes page-out {
+  from { opacity: 1; }
+  to { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+  *, *::before, *::after { animation: none !important; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
+}

@@ -3,8 +3,20 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node build.mjs",
-    "dev": "node server.mjs",
-    "start": "node server.mjs"
+    "generate": "node scripts/generate.ts",
+    "typecheck": "tsc --noEmit",
+    "dev": "npm run generate && vite",
+    "build": "npm run typecheck && npm run generate && vite build",
+    "preview": "vite preview",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
   }
 }
