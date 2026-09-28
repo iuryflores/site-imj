@@ -1,0 +1,10 @@
+{
+  "name": "imj-institucional",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node server.mjs",
+    "start": "node server.mjs"
+  }
+}
